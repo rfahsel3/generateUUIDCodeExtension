@@ -18,6 +18,12 @@
         "commands": [{
             "command": "extension.sayHello",
             "title": "Hello World"
+        }],
+        "keybindings": [{
+            "command": "extension.sayHello",
+            "key": "ctrl+k",
+            "mac": "cmd+k cmd+g",
+            "when": "editorTextFocus"
         }]
     },
     "scripts": {
