@@ -11,20 +11,46 @@
         "Other"
     ],
     "activationEvents": [
-        "onCommand:extension.sayHello"
+        "onCommand:extension.generateGuid",
+        "onCommand:extension.setGuidType",
+        "onCommand:extension.setGuidNamespace"
     ],
     "main": "./extension",
     "contributes": {
         "commands": [{
-            "command": "extension.sayHello",
-            "title": "Hello World"
+            "command": "extension.generateGuid",
+            "title": "Generate GUID"
+        }, 
+        {
+            "command": "extension.setGuidType",
+            "title": "Set GUID type"
+        }, 
+        {
+            "command": "extension.setGuidNamespace",
+            "title": "Set GUID namespace"
         }],
         "keybindings": [{
-            "command": "extension.sayHello",
+            "command": "extension.generateGuid",
             "key": "ctrl+k",
             "mac": "cmd+k cmd+g",
             "when": "editorTextFocus"
-        }]
+        }],
+        "configuration": {
+            "type": "object",
+            "title": "GenerateGUID",
+            "properties": {
+                "generateGuid.guidType": {
+                    "type": ["string", "null"],
+                    "default": null,
+                    "description": "The type of GUID to generate"
+                },
+                "generateGuid.namespace": {
+                    "type": ["string", "null"],
+                    "defautl" : null,
+                    "description": "The namespace for GUIDs"
+                }          
+            }
+        }
     },
     "scripts": {
         "postinstall": "node ./node_modules/vscode/bin/install",
