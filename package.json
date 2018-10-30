@@ -1,7 +1,7 @@
 {
-  "name": "generateguid",
-  "displayName": "GenerateGuid",
-  "description": "Keyboard shortcut to insert a GUID",
+  "name": "generateuuid",
+  "displayName": "Generate UUID Shortcut",
+  "description": "Keyboard shortcut to insert a UUID. Uses the Node 'uuid' library",
   "version": "0.0.2",
   "publisher": "FirewireFahsel",
   "engines": {
@@ -10,6 +10,10 @@
   "categories": [
     "Other"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rfahsel3/generateUUIDCodeExtension"
+  },
   "activationEvents": [
     "onCommand:extension.generateGuid",
     "onCommand:extension.setGuidType",
