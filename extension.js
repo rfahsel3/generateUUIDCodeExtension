@@ -8,43 +8,43 @@ function activate(context) {
 
     // Use the console to output diagnostic information (console.log) and errors (console.error)
     // This line of code will only be executed once when your extension is activated
-    console.log('Congratulations, your extension "generateguid" is now active!');
-    const v1GuidGenerator = require('uuid/v1');
-    const v3GuidGenerator = require('uuid/v3');
-    const v4GuidGenerator = require('uuid/v4');
-    const v5GuidGenerator = require('uuid/v5');
+    console.log('Congratulations, your extension "generateuuid" is now active!');
+    const v1UuidGenerator = require('uuid/v1');
+    const v3UuidGenerator = require('uuid/v3');
+    const v4UuidGenerator = require('uuid/v4');
+    const v5UuidGenerator = require('uuid/v5');
 
     // The command has been defined in the package.json file
     // Now provide the implementation of the command with  registerCommand
     // The commandId parameter must match the command field in package.json
-    let setGuidNamespace = vscode.commands.registerCommand('extension.setGuidNamespace', function () {
-        getInput("Enter a namespace to use for your GUID").then(function(inputValue) {
-            var namespaceConfig = vscode.workspace.getConfiguration("generateGuid");
+    let setUuidNamespace = vscode.commands.registerCommand('extension.setUuidNamespace', function () {
+        getInput("Enter a namespace to use for your Uuid").then(function(inputValue) {
+            var namespaceConfig = vscode.workspace.getConfiguration("generateUuid");
             namespaceConfig.update('namespace', inputValue, true);
         });
     });
 
-    let setGuidType = vscode.commands.registerCommand('extension.setGuidType', function() {
-        var quickPickOptions = { matchOnDescription: true, placeHolder: "What type of GUID do you want to generate?" };
+    let setUuidType = vscode.commands.registerCommand('extension.setUuidType', function() {
+        var quickPickOptions = { matchOnDescription: true, placeHolder: "What type of UUID do you want to generate?" };
         var items = [];
     
-        items.push({ label: "V1", description: "Use V1 type GUID" });
-        items.push({ label: "V3", description: "Use V3 type GUID" });
-        items.push({ label: "V4", description: "Use V4 type GUID" });
-        items.push({ label: "V5", description: "Use V5 type GUID" });
+        items.push({ label: "V1", description: "Use V1 type UUID" });
+        items.push({ label: "V3", description: "Use V3 type UUID" });
+        items.push({ label: "V4", description: "Use V4 type UUID" });
+        items.push({ label: "V5", description: "Use V5 type UUID" });
 
         vscode.window.showQuickPick(items).then(function (selection) {
-            var namespaceConfig = vscode.workspace.getConfiguration("generateGuid");
-            namespaceConfig.update('guidType', selection.label, true);
+            var namespaceConfig = vscode.workspace.getConfiguration("generateUuid");
+            namespaceConfig.update('uuidType', selection.label, true);
         });        
     });
 
-    let generateGuid = vscode.commands.registerCommand('extension.generateGuid', function () {
+    let generateUuid = vscode.commands.registerCommand('extension.generateUuid', function () {
         // Display a message box to the user
         var editor = vscode.window.activeTextEditor;
         var cursorPosition = editor.selection.active;
-        generateGuidHelper().then(function (guid) {
-            var textEdit = vscode.TextEdit.insert(cursorPosition, guid);
+        generateUuidHelper().then(function (uuid) {
+            var textEdit = vscode.TextEdit.insert(cursorPosition, uuid);
             var workspaceEdit = new vscode.WorkspaceEdit();
             workspaceEdit.set(vscode.window.activeTextEditor.document.uri, [textEdit]);
             vscode.workspace.applyEdit(workspaceEdit);
@@ -53,45 +53,45 @@ function activate(context) {
         });
     });
 
-    context.subscriptions.push(setGuidType);
-    context.subscriptions.push(setGuidNamespace);
-    context.subscriptions.push(generateGuid);
+    context.subscriptions.push(setUuidType);
+    context.subscriptions.push(setUuidNamespace);
+    context.subscriptions.push(generateUuid);
 
     // Helpers below here
-    var generateGuidHelper = function () {
+    var generateUuidHelper = function () {
         return new Promise(function(resolve, reject) {
-            var namespaceConfig = vscode.workspace.getConfiguration("generateGuid");
+            var namespaceConfig = vscode.workspace.getConfiguration("generateUuid");
             var namespace = namespaceConfig.get("namespace");
-            var guidVersion = namespaceConfig.get("guidType");
-            switch (guidVersion) {
+            var uuidVersion = namespaceConfig.get("uuidType");
+            switch (uuidVersion) {
                 case "V1":
-                    resolve(v1GuidGenerator());
+                    resolve(v1UuidGenerator());
                     break;
                 case "V3":
                     if (namespace == null || namespace == "") {
-                        reject("Please set a namespace for your GUID");
+                        reject("Please set a namespace for your UUID");
                     }
                     else {
-                        getInput("What is the name to use for the GUID?").then(function(inputValue) {
-                            resolve(v3GuidGenerator(inputValue, namespace));
+                        getInput("What is the name to use for the UUID?").then(function(inputValue) {
+                            resolve(v3UuidGenerator(inputValue, namespace));
                         });
                     }
                     break;
                 case "V4":
-                    resolve(v4GuidGenerator());
+                    resolve(v4UuidGenerator());
                     break;
                 case "V5":
                     if (namespace == null || namespace == "") {
-                        reject("Please set a namespace for your GUID");
+                        reject("Please set a namespace for your UUID");
                     }
                     else {
-                        getInput("What is the name to use for the GUID?").then(function(inputValue) {
-                            resolve(v5GuidGenerator(inputValue, namespace));
+                        getInput("What is the name to use for the UUID?").then(function(inputValue) {
+                            resolve(v5UuidGenerator(inputValue, namespace));
                         });
                     }
                     break;
                 default:
-                    reject("Please set the version of GUID you want to use.");
+                    reject("Please set the version of UUID you want to use.");
                     break;
             }
         })

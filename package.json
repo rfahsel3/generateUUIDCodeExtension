@@ -15,53 +15,53 @@
     "url": "https://github.com/rfahsel3/generateUUIDCodeExtension"
   },
   "activationEvents": [
-    "onCommand:extension.generateGuid",
-    "onCommand:extension.setGuidType",
-    "onCommand:extension.setGuidNamespace"
+    "onCommand:extension.generateUuid",
+    "onCommand:extension.setUuidType",
+    "onCommand:extension.setUuidNamespace"
   ],
   "main": "./extension",
   "contributes": {
     "commands": [
       {
-        "command": "extension.generateGuid",
-        "title": "Generate GUID"
+        "command": "extension.generateUuid",
+        "title": "Generate UUID"
       },
       {
-        "command": "extension.setGuidType",
-        "title": "Set GUID type"
+        "command": "extension.setUuidType",
+        "title": "Set UUID type"
       },
       {
-        "command": "extension.setGuidNamespace",
-        "title": "Set GUID namespace"
+        "command": "extension.setUuidNamespace",
+        "title": "Set UUID namespace"
       }
     ],
     "keybindings": [
       {
-        "command": "extension.generateGuid",
-        "key": "ctrl+k",
+        "command": "extension.generateUuid",
+        "key": "ctrl+k ctl+g",
         "mac": "cmd+k cmd+g",
         "when": "editorTextFocus"
       }
     ],
     "configuration": {
       "type": "object",
-      "title": "GenerateGUID",
+      "title": "GenerateUUID",
       "properties": {
-        "generateGuid.guidType": {
+        "generateUuid.uuidType": {
           "type": [
             "string",
             "null"
           ],
           "default": null,
-          "description": "The type of GUID to generate"
+          "description": "The type of UUID to generate"
         },
-        "generateGuid.namespace": {
+        "generateUuid.namespace": {
           "type": [
             "string",
             "null"
           ],
           "defautl": null,
-          "description": "The namespace for GUIDs"
+          "description": "The namespace for UUIDs"
         }
       }
     }
