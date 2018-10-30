@@ -3,7 +3,7 @@
     "displayName": "GenerateGuid",
     "description": "Keyboard shortcut to insert a GUID",
     "version": "0.0.1",
-    "publisher": "firewirefahsel",
+    "publisher": "FirewireFahsel",
     "engines": {
         "vscode": "^1.28.0"
     },
