@@ -1,66 +1,76 @@
 {
-    "name": "generateguid",
-    "displayName": "GenerateGuid",
-    "description": "Keyboard shortcut to insert a GUID",
-    "version": "0.0.1",
-    "publisher": "FirewireFahsel",
-    "engines": {
-        "vscode": "^1.28.0"
-    },
-    "categories": [
-        "Other"
+  "name": "generateguid",
+  "displayName": "GenerateGuid",
+  "description": "Keyboard shortcut to insert a GUID",
+  "version": "0.0.2",
+  "publisher": "FirewireFahsel",
+  "engines": {
+    "vscode": "^1.28.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onCommand:extension.generateGuid",
+    "onCommand:extension.setGuidType",
+    "onCommand:extension.setGuidNamespace"
+  ],
+  "main": "./extension",
+  "contributes": {
+    "commands": [
+      {
+        "command": "extension.generateGuid",
+        "title": "Generate GUID"
+      },
+      {
+        "command": "extension.setGuidType",
+        "title": "Set GUID type"
+      },
+      {
+        "command": "extension.setGuidNamespace",
+        "title": "Set GUID namespace"
+      }
     ],
-    "activationEvents": [
-        "onCommand:extension.generateGuid",
-        "onCommand:extension.setGuidType",
-        "onCommand:extension.setGuidNamespace"
+    "keybindings": [
+      {
+        "command": "extension.generateGuid",
+        "key": "ctrl+k",
+        "mac": "cmd+k cmd+g",
+        "when": "editorTextFocus"
+      }
     ],
-    "main": "./extension",
-    "contributes": {
-        "commands": [{
-            "command": "extension.generateGuid",
-            "title": "Generate GUID"
-        }, 
-        {
-            "command": "extension.setGuidType",
-            "title": "Set GUID type"
-        }, 
-        {
-            "command": "extension.setGuidNamespace",
-            "title": "Set GUID namespace"
-        }],
-        "keybindings": [{
-            "command": "extension.generateGuid",
-            "key": "ctrl+k",
-            "mac": "cmd+k cmd+g",
-            "when": "editorTextFocus"
-        }],
-        "configuration": {
-            "type": "object",
-            "title": "GenerateGUID",
-            "properties": {
-                "generateGuid.guidType": {
-                    "type": ["string", "null"],
-                    "default": null,
-                    "description": "The type of GUID to generate"
-                },
-                "generateGuid.namespace": {
-                    "type": ["string", "null"],
-                    "defautl" : null,
-                    "description": "The namespace for GUIDs"
-                }          
-            }
+    "configuration": {
+      "type": "object",
+      "title": "GenerateGUID",
+      "properties": {
+        "generateGuid.guidType": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "default": null,
+          "description": "The type of GUID to generate"
+        },
+        "generateGuid.namespace": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "defautl": null,
+          "description": "The namespace for GUIDs"
         }
-    },
-    "scripts": {
-        "postinstall": "node ./node_modules/vscode/bin/install",
-        "test": "node ./node_modules/vscode/bin/test"
-    },
-    "devDependencies": {
-        "typescript": "^2.6.1",
-        "vscode": "^1.1.21",
-        "eslint": "^4.11.0",
-        "@types/node": "^8.10.25",
-        "@types/mocha": "^2.2.42"
+      }
     }
+  },
+  "scripts": {
+    "postinstall": "node ./node_modules/vscode/bin/install",
+    "test": "node ./node_modules/vscode/bin/test"
+  },
+  "devDependencies": {
+    "typescript": "^2.6.1",
+    "vscode": "^1.1.21",
+    "eslint": "^4.11.0",
+    "@types/node": "^8.10.25",
+    "@types/mocha": "^2.2.42"
+  }
 }
