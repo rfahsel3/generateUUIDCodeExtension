@@ -2,7 +2,7 @@
   "name": "generateuuid",
   "displayName": "Generate UUID Shortcut",
   "description": "Keyboard shortcut to insert a UUID. Uses the Node 'uuid' library",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "publisher": "FirewireFahsel",
   "engines": {
     "vscode": "^1.28.0"
