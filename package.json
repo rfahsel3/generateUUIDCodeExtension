@@ -38,7 +38,7 @@
     "keybindings": [
       {
         "command": "extension.generateUuid",
-        "key": "ctrl+k ctl+g",
+        "key": "ctrl+k ctrl+g",
         "mac": "cmd+k cmd+g",
         "when": "editorTextFocus"
       }
